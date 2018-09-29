@@ -13,7 +13,8 @@ int main()
 			cout<<a[i][j]<<" ";
 			sum=sum+a[i][j];
 		}
-		cout<<" ²Ä"<<i<<"¦C©M"<<sum<<endl; 
+		cout<<" Â²Ã„"<<i<<"Â¦CÂ©M"<<sum<<endl; 
 	}
 	return 0;
 }
+
