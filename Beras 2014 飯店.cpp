@@ -9,12 +9,10 @@ int main()
 	for (i = 1; i <= 10; i++)
 		r[a[i] / 10][a[i] % 10] = 1;
 		for (i = 1; i <= 8; i++)
-	{
-		for (j = 1; j <= 8; j++)
 		{
-			if (r[j][i] == 1)
-				cout << j * 10 + i << " ";
+			for (j = 1; j <= 8; j++)
+				if (r[j][i] == 1)
+					cout << j * 10 + i << " ";
 		}
-	}
 	return 0;
 }
