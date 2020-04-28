@@ -5,16 +5,17 @@ int main()
 {
     int a, b, c;
     cin >> a >> b >> c;
-    if((b*b-4*a*c)<0)
+    int D = b * b - 4 * a * c;
+    if(D<0)
     {
         cout << "No real root";
     }
-    else if((b*b-4*a*c)==0)
+    else if(D==0)
     {
-        cout << "Two same roots x="<<(-b+pow(b*b-4*a*c,2))/(2*a);
+        cout << "Two same roots x="<<(-b+sqrt(D))/(2*a);
     }
     else
     {
-        cout << "Two different roots x1="<<(-b+pow(b*b-4*a*c,2))/(2*a)<<",x2="<<(-b-pow(b*b-4*a*c,2))/(2*a);
+        cout << "Two different roots x1="<<(-b+sqrt(D))/(2*a)<<" , x2="<<(-b-sqrt(D))/(2*a);
     }
 }
