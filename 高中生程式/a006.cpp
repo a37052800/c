@@ -15,5 +15,5 @@ int main()
     }
     else
     {
-        cout << "";
+        cout << "Two different roots x1="<<(-b+pow(b*b-4*a*c,2))/(2*a)<<",x2="<<(-b-pow(b*b-4*a*c,2))/(2*a);
         
