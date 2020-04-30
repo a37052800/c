@@ -9,7 +9,7 @@ int main()
 		{
 			s[i]-=7;
 		}
-		cout<<s;
+		cout<<s<<endl;
 	}
 }
 
