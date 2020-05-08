@@ -52,5 +52,6 @@ int main()
 	cin>>i;
 	cout<<LomaToInt(i)<<endl;
 	main();
+	//
 }
 
