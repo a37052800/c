@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int search(int &a[], int s, int u, int d, char f);
+int search(int *a, int s, int u, int d, char f);
 int main()
 {
 	int n, q;
@@ -11,7 +11,7 @@ int main()
 	for (int i = 0; i < q; i++)
 		cin >> l[i] >> r[i];
 }
-int search(int &a[], int s, int u, int d, char f)
+int search(int *a, int s, int u, int d, char f)
 {
 	int m = (u + d) / 2;
 	if (f == 'D')
@@ -19,8 +19,8 @@ int search(int &a[], int s, int u, int d, char f)
 		if (u == d)
 			return u;
 		if (a[m] <= s)
-			search(a[], s, u, m, f);
+			search(a, s, u, m, f);
 		if (a[m] >= s)
-			search(a[], s, m, d, f);
+			search(a, s, m, d, f);
 	}
 }

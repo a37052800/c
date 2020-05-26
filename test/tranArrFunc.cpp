@@ -1,11 +1,16 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-int testArr(int &a[0])
+void testArr(int &a)
 {
-	for(int i=0;i<4;i++) cout<<a[i];
+	for (int i = 0; i < 4; i++)
+		cout << *(&a + i);
+	a += 1;
 }
 int main()
 {
-	int ar[4]={0,1,2,3};
+	int ar[4] = {5, 1, 8, 3};
 	testArr(ar[0]);
+	cout << endl;
+	for (int i = 0; i < 4; i++)
+		cout << ar[i];
 }
