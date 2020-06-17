@@ -16,9 +16,21 @@ int main()
 				cin>>a[i][j];
 			}
 		}
-		for(int i=0;i<ai;i++)
+		int x=a[ai][0];
+		for(int i=ai,j=0;i<ai&&j<aj;j++,i++)
 		{
-			
+			if(x!=a[i][j])
+			{
+				cout<<"NO";
+				goto END;
+			}
+			if(i=ai)
+			{
+				i--;
+				x=a[i][0];
+			}
 		}
+		cout<<"YES"
+		END:;
 	}
 }
