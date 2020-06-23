@@ -27,7 +27,7 @@ int main()
 				}
 			}
 		}
-		for (int k = 0; k < ai - 1; k++)
+		for (int k = 1; k < ai - 1; k++)
 		{
 			for (int i = k + 1, j = 0 + 1; i < ai && j < aj; i++, j++)
 			{
