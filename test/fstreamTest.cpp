@@ -9,8 +9,8 @@ int main()
 	ofstream fout;
 	string s[10];
 
-	fin.open("ด๚ธี6.txt");
-	fout.open("ด๚ธี6.txt");
+	fin.open("fstreamTest.txt");
+	fout.open("fstreamTest.txt");
 	if(!fin.is_open()) cout<<"fail";
 	if(!fout.is_open()) cout<<"fail";
 	for(int i=0;i<=9;i++)

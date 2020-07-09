@@ -7,4 +7,9 @@ int main()
     {
         cout << t << endl;
     }
+    string s = "12345";
+    for(char c : s)
+    {
+        cout << c << endl;
+    }
 }
