@@ -29,6 +29,6 @@ int main()
     cout << s2;
     */
     //////////////////////////////
-    string s3="abcdefg",s4="cdefg";
-    cout<<s3.compare(2, s3.size(), s4);
+    string s3 = "ab cdefg", s4 = "cdefg";
+    cout << s3.compare(s3.find(" ")+1, s3.size() - s3.find(" ")-1, s4);
 }
