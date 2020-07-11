@@ -1,6 +1,19 @@
-#include <iostream>
-#include <string>
+#include<iostream>
+#include<string>
+#include<conio.h>
 using namespace std;
+string GetLine()
+{
+    char c;
+    string s;
+    c = getch();
+    while(int(c)!=13)
+    {
+        s += c;
+        c = getch();
+    }
+    return s;
+}
 int main()
 {
     int n;
@@ -9,17 +22,14 @@ int main()
     {
         int ai, aj;
         bool dc = true;
-        string s, temp;
-        cin.sync();
+        string s,temp;
         cin >> ai >> aj;
-        cin.sync();
-        getline(cin, s);
+        s = GetLine();
         if (s.rfind(" ") != string::npos)
             s.resize(s.rfind(" "));
         for (int j = 1; j < ai; j++)
         {
-            cin.sync();
-            getline(cin, temp);
+            temp = GetLine();
             if (temp.find(" ") != string::npos && dc)
             {
                 if (temp.compare(temp.find(" ") + 1, temp.size() - temp.find(" ") - 1, s) == 0)
