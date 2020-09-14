@@ -1,41 +1,56 @@
+#include <cstring>
+#include <deque>
 #include <iostream>
 using namespace std;
-class Homo
-{
-public:
-    Homo *f = NULL;
-    int c = 0;
-};
+deque<int> tr[100001];
+int v[100001];
+void dfs(int x, int d);
 int main()
 {
+    memset(v, 0, sizeof(v));
     int n;
     cin >> n;
-    Homo p[n - 1];
-    int temp[n][2];
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n; i++)
     {
-        cin >> temp[i][0] >> temp[i][1];
+        tr[i].clear();
     }
     for (int i = 0; i < n - 1; i++)
     {
-        p[i].c = temp[i][1];
+        int tc, tf;
+        cin >> tc >> tf;
+        tr[tf].push_back(tc);
+        tr[tc].push_back(tf);
     }
-    for (int i = 0; i < n - 1; i++)
+    v[0] = 1;
+    dfs(0, 1);
+    int max = -1, st;
+    for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < n; j++)
+        if (v[i] > max)
         {
-            if (temp[i][0] == p[j].c)
-            {
-                p[i].f = &p[j];
-            }
+            max = v[i];
+            st = i;
         }
     }
-    for (int i = 0; i < n - 1; i++)
+    memset(v, 0, sizeof(v));
+    v[st] = 1;
+    dfs(st, 1);
+    max = -1;
+    for (int i = 0; i < n; i++)
     {
-        cout << "name " << p[i].c;
-        if (p[i].f != NULL)
+        if (v[i] > max)
+            max = v[i];
+    }
+    cout << max - 1;
+}
+void dfs(int x, int d)
+{
+    for (int i = 0; i < tr[x].size(); i++)
+    {
+        if (v[tr[x][i]] == 0)
         {
-            cout << " f " << p[i].f ->f ->c << endl;
+            v[tr[x][i]] = d + 1;
+            dfs(tr[x][i], d + 1);
         }
     }
 }
