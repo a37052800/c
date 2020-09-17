@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #include <iostream>
 #include <list>
 using namespace std;
@@ -26,25 +25,6 @@ int main()
 	p1->add_child(p3);
 	for (auto its = p1->child.begin(); its != p1->child.end(); ++its)
 		cout << &its->data << " ";
-=======
-#include <cstdio>
-#include <deque>
-#include <algorithm>
-#include <string>
-#include <cstring>
-#include <vector>
-#define MAX 100001
-using namespace std;
-deque<int> F[MAX];
-int v[MAX];
-void dfs(int x, int d) {
-	for (int i = 0; i<F[x].size(); i++) {//走訪每一個小孩與父母
-		if (v[F[x][i]] == 0) {
-			v[F[x][i]] = d + 1;
-			dfs(F[x][i], d + 1);
-		}
-	}
->>>>>>> 2ad876cd252074182c239918a39516c804d5fb1c
 }
 
 int main() {
