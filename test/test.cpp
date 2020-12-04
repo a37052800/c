@@ -1,29 +1,25 @@
-#include <fstream>
 #include <iostream>
 using namespace std;
 int main()
 {
-    ofstream fout;
-    fout.open("test.txt");
-    if (!fout.is_open())
-        cout << "fail";
-    /*for (int i = 1; i < 500000;i++)
+    int x,c=0/*,i=1*/;
+    cin >> x;
+    /*while(i<x/i)
     {
-        fout << i << " ";
+        if(x%i==0)
+        {
+            c += i + (x / i);
+            i++;
+        }
+        else
+        {
+            i++;
+        }
     }*/
-
-    //ios_base::sync_with_stdio(false);
-    //cin.tie(0);
-    string temp, s;
-    cin >> s;
-    for (int i = 2; i < 500000; i++)
+    for (int i = 1; i < x / i; i++)
     {
-        cin >> temp;
-        fflush(stdin);
-        s += " ";
-        s += temp;
+        if ((x % i) == 0)
+            c += i + (x / i);
     }
-    //fout << s;
-
-    fout.close();
+    cout << c-x;
 }

@@ -24,10 +24,10 @@ int main(void)
 int factor(int x) //求出x的因數和
 {
     int c = 0;
-    for (int i = 1; i < x/i; i++)
+    for (int i = 1; i < x / i; i++)
     {
         if ((x % i) == 0)
-            c += i;
+            c += i + (x / i);
     }
     return c; //x的因數和
 }

@@ -5,6 +5,7 @@ class nood
         nood *lift, *right;
         int data;
 };
+int dfs()
 int main()
 {
     nood tree[7];
