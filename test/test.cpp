@@ -1,29 +1,19 @@
-#include <fstream>
-#include <iostream>
-using namespace std;
-int main()
+#include <stdio.h>
+#include <stdlib.h>
+int main(void)
 {
-    ofstream fout;
-    fout.open("test.txt");
-    if (!fout.is_open())
-        cout << "fail";
-    /*for (int i = 1; i < 500000;i++)
-    {
-        fout << i << " ";
-    }*/
-
-    //ios_base::sync_with_stdio(false);
-    //cin.tie(0);
-    string temp, s;
-    cin >> s;
-    for (int i = 2; i < 500000; i++)
-    {
-        cin >> temp;
-        fflush(stdin);
-        s += " ";
-        s += temp;
-    }
-    //fout << s;
-
-    fout.close();
+	int m=0,n=0,x[100][100]={{0},{0}},i=0,j=0;
+	scanf ("%d%d",&m,&n);
+	for( i=0;i<m;i++)
+	{
+		for( j=0;j<n;j++)	scanf ("%d",&x[i][j]);
+	}
+	for( i=0;i<n;i++)
+	{
+		for( j=0;j<m;j++)
+		{
+			printf ("%d ",x[j][i]);
+		}
+		if(i!=(n-1))	puts("");
+	}
 }
