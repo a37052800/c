@@ -6,15 +6,15 @@ int main()
     deque<int> dq;
     dq.push_back(1);
     dq.push_back(2);
-    for (int i = 0; i < 2; i++)
-        cout << dq[i];
+    cout << dq[0];
+    dq.pop_front();
+    cout << dq[0];
     cout << endl;
     dq.clear();
-    for (int i = 0; i < 2; i++)
-        cout << dq[i];
-    cout << endl;
     dq.push_back(3);
     dq.push_back(4);
-    for (int i = 0; i < 2; i++)
-        cout << dq[i];
+    int t = dq.back();
+    cout << t << endl;
+    dq.pop_back();
+    cout << dq.back() << dq.front();
 }
