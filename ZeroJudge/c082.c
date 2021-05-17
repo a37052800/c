@@ -4,17 +4,16 @@
 int main(void)
 {
     char now = '0';
-    int dir = 0, x = 0, y = 0, x0 = 0, y0 = 0;
-    scanf("%d", &x);
-    scanf("%d", &y);
+    int dir = 0, x = 0, y = 0, tx = 0, ty = 0;
+    scanf("%d %d", &x, &y);
     int ter[101][101];
     for (int i = 0; i < 100; i++)
         for (int j = 0; j < 100; j++)
             ter[i][j] = 0; //initialize
-    while (scanf("%d %d %c ", &x0, &y0, &now) != EOF)
-    {                
-        
-		switch (now)   //the first direction
+    while (scanf("%d %d %s", &tx, &ty, &now) != EOF)
+    {
+        char trash[2]; //eat the first enter
+        switch (now)   //the first direction
         {
         case 'N':
             dir = 0;
@@ -29,13 +28,12 @@ int main(void)
             dir = 1;
             break;
         }
-		char move[100];						//the command of moving
-		int sit = 0;						//lost or not
-        
-		fgets(move, sizeof(move), stdin);	// safe input to get command into move
-        
-        
-		for (int i = 0; i < strlen(move) && sit != 1; i++) //start to move
+        char move[100];                     //the command of moving
+        int sit = 0;                        //lost or not
+        fgets(trash, sizeof(trash), stdin); // safe input to eat enter
+        fgets(move, sizeof(move), stdin);   // safe input to get command into move
+        int i = 0;
+        for (i = 0; i < strlen(move) && sit != 1; i++) //start to move
         {
             switch (move[i])
             {
@@ -49,18 +47,18 @@ int main(void)
                 if (dir == 4)
                     dir = 0;
                 break;
-			case 'F':		 //move forward
+            case 'F':        //move forward
                 switch (dir) //find the current direction
                 {
                 case 0:
-                    y0 += 1;
-                    if (y0 > y)
+                    ty += 1;
+                    if (ty > y)
                     {
-                        y0--;
-                        if (ter[x0][y0] == 0)
+                        ty--;
+                        if (ter[tx][ty] == 0)
                         {
                             sit = 1;
-                            ter[x0][y0] = 1;
+                            ter[tx][ty] = 1;
                             if (dir == 0)
                                 now = 'N';
                             else if (dir == 1)
@@ -69,19 +67,19 @@ int main(void)
                                 now = 'S';
                             else if (dir == 3)
                                 now = 'W';
-                            printf("%d %d %c LOST\n", x0, y0, now);
+                            printf("%d %d %c LOST\n", tx, ty, now);
                         }
                     }
                     break;
                 case 1:
-                    x0 += 1;
-                    if (x0 > x)
+                    tx += 1;
+                    if (tx > x)
                     {
-                        x0--;
-                        if (ter[x0][y0] == 0)
+                        tx--;
+                        if (ter[tx][ty] == 0)
                         {
                             sit = 1;
-                            ter[x0][y0] = 1;
+                            ter[tx][ty] = 1;
                             if (dir == 0)
                                 now = 'N';
                             else if (dir == 1)
@@ -90,19 +88,19 @@ int main(void)
                                 now = 'S';
                             else if (dir == 3)
                                 now = 'W';
-                            printf("%d %d %c LOST\n", x0, y0, now);
+                            printf("%d %d %c LOST\n", tx, ty, now);
                         }
                     }
                     break;
                 case 2:
-                    y0--;
-                    if (y0 < 0)
+                    ty--;
+                    if (ty < 0)
                     {
-                        y0++;
-                        if (ter[x0][y0] == 0)
+                        ty++;
+                        if (ter[tx][ty] == 0)
                         {
                             sit = 1;
-                            ter[x0][y0] = 1;
+                            ter[tx][ty] = 1;
                             if (dir == 0)
                                 now = 'N';
                             else if (dir == 1)
@@ -111,19 +109,19 @@ int main(void)
                                 now = 'S';
                             else if (dir == 3)
                                 now = 'W';
-                            printf("%d %d %c LOST\n", x0, y0, now);
+                            printf("%d %d %c LOST\n", tx, ty, now);
                         }
                     }
                     break;
                 case 3:
-                    x0--;
-                    if (x0 < 0)
+                    tx--;
+                    if (tx < 0)
                     {
-                        x0++;
-                        if (ter[x0][y0] == 0)
+                        tx++;
+                        if (ter[tx][ty] == 0)
                         {
                             sit = 1;
-                            ter[x0][y0] = 1;
+                            ter[tx][ty] = 1;
                             if (dir == 0)
                                 now = 'N';
                             else if (dir == 1)
@@ -132,7 +130,7 @@ int main(void)
                                 now = 'S';
                             else if (dir == 3)
                                 now = 'W';
-                            printf("%d %d %c LOST\n", x0, y0, now);
+                            printf("%d %d %c LOST\n", tx, ty, now);
                         }
                     }
                     break;
@@ -141,23 +139,18 @@ int main(void)
                 }
                 break;
             }
-            if (sit == 1)
+            if (sit == 0 && i == strlen(move) - 1)
             {
-                break;
+                if (dir == 0)
+                    now = 'N';
+                else if (dir == 1)
+                    now = 'E';
+                else if (dir == 2)
+                    now = 'S';
+                else if (dir == 3)
+                    now = 'W';
+                printf("%d %d %c\n", tx, ty, now);
             }
         }
-        if (sit == 0)
-        {
-            if (dir == 0)
-                now = 'N';
-            else if (dir == 1)
-                now = 'E';
-            else if (dir == 2)
-                now = 'S';
-            else if (dir == 3)
-                now = 'W';
-            printf("%d %d %c\n", x0, y0, now);
-        }
     }
-    return 0;
 }
