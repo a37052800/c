@@ -1,15 +1,10 @@
-#include <iostream>
-using namespace std;
-class text
-{
-public:
-    char a = NULL;
-};
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 int main()
 {
-    text *t = new text;
-    if (t->a != NULL)
-    {
-        cout << t->a;
-    }
+    int i,j,k;
+    scanf("%d", &i);
+    scanf("%d", &j);
+    printf("%d", j);
 }

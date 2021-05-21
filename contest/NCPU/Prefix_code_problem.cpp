@@ -33,33 +33,24 @@ int main()
         tr.push_back(f);
         for (int j = 0; j < df.size(); j++)
         {
-            if ((df[j] > 'a') && (df[j] < 'z'))
+            if ((df[j] >= 'a') && (df[j] <= 'z'))
             {
                 tr.back()->a = df[j];
             }
             else
             {
                 nood *ne = new nood;
-                if (df[j] == 0)
+                if (df[j] == '0')
                 {
                     tr.back()->z = ne;
                     tr.push_back(ne);
                 }
                 else
                 {
-                    for (int k = tr.size() - 2; k >= 0; k--)
-                    {
-                        if (tr[k]->o == NULL)
-                        {
-                            tr[k]->o = ne;
-                            tr.push_back(ne);
-                            break;
-                        }
-                    }
                 }
             }
         }
-        cout << tr[1]->a;
+        cout << tr.front()->a << tr.size();
         //tp(tr.front());
         /*nood *stem = tr.front();
         for (int i = 0; i < px.size(); i++)
