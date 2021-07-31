@@ -1,10 +1,13 @@
 #include <iostream>
 #include <windows.h>
 using namespace std;
+BOOL CALLBACK EnumDesktopProc(LPTSTR lpszDesktop,LPARAM lParam);
 int main()
 {
     HWND window;
-    window = FindWindowA(NULL, "*文.txt - 記事本");         //尋找窗口HWND(類名,標題)
+    LPARAM windows[100];
+    EnumDesktopsA(NULL,EnumDesktopProc,windows);
+    /*window = FindWindowA(NULL, "*文.txt - 記事本");         //尋找窗口HWND(類名,標題)
     FlashWindow(window, true);                              //閃爍視窗(HWND,動畫)
     SetActiveWindow(window);                                //激活視窗
     SendMessageA(window, WM_SYSCOMMAND, SC_MAXIMIZE, NULL); //最大化(縮小時才有效)
@@ -17,6 +20,9 @@ int main()
     /*window = GetForegroundWindow(); //取得當前視窗HWND
     CloseWindow(window); //最小化
     OpenIcon(window); //最大化*/
-
-    cout << window;
+    for (int i = 0; i < 100;i++)
+    {
+        cout << windows[i];
+    }
+        
 }
