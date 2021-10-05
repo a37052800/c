@@ -1,11 +1,15 @@
 #include <stdio.h>
-int main()
+#include <wchar.h>
+#include <wctype.h>
+#include <locale.h>
+ 
+int main(void)
 {
-    printf("\
-%¡@%¡@%¡@%¡@%¡@_     v\n\
- __%¡@%¡@ %¡D%¡D    |\n\
-|  |%¡@( ('') )%¡ş*\n\
-|__|__  /  \\ %¡ş\n\
-       /___ \\\n\
-       _/  |_");
+    setlocale(LC_ALL, "en_US.utf8");
+    printf("ã€€ã€€ã€€ã€€ã€€_     v\n");
+    printf(" __ã€€ã€€ ï¼ï¼    |\n");
+    printf("|  |ã€€( ('') )ï¼*\n");
+    printf("|__|__  /  \\ ï¼\n");
+    printf("       /___ \\\n");
+    printf("       _/  |_");
 }
