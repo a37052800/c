@@ -1,0 +1,2 @@
+
+    cout << stoi(result) << endl;

@@ -20,23 +20,32 @@ bool isPrime(int n)
 
 void sort(string result, string unsort)
 {
-    if (unsort.size() > 0)
+    bool used = false;
+    if ((unsort.size() > 0))
     {
+        bool fillNum[10];
+        for (int i = 1; i < 10; i++)
+            fillNum[i] = false;
+        if (result == "")
+            fillNum[0] = true;
         for (int i = 0; i < unsort.size(); i++)
         {
-            string resultTemp = result;
-            string unsortTemp = unsort;
-            resultTemp += unsortTemp[i];
-            unsortTemp.erase(i, 1);
-            sort(resultTemp, unsortTemp);
+            if (!fillNum[(int)unsort[i] - 48])
+            {
+                fillNum[(int)unsort[i] - 48] = true;
+                string resultTemp = result;
+                string unsortTemp = unsort;
+                resultTemp += unsortTemp[i];
+                unsortTemp.erase(i, 1);
+                sort(resultTemp, unsortTemp);
+            }
+            else
+                used = false;
         }
     }
-    else
-    {
-        cout << stoi(result) << endl;
-        if (isPrime(stoi(result)))
-            primeCount++;
-    }
+    //cout << stoi(result) << endl;
+    if ((result.size() > 0) && (isPrime(std::stoi(result))))
+        primeCount++;
 }
 
 int main()
@@ -48,7 +57,6 @@ int main()
         primeCount = 0;
         string input;
         cin >> input;
-        
         sort("", input);
         cout << primeCount << endl;
     }
