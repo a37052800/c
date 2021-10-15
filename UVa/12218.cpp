@@ -1,14 +1,13 @@
 #include <cmath>
 #include <iostream>
-#include <string>
-#include <vector>
+#include <sstream>
 using namespace std;
 
 int primeCount = 0;
 
 bool isPrime(int n)
 {
-    if (sqrt(n) - (int)sqrt(n) == 0)
+    if (sqrt(n) == (int)sqrt(n))
         return false;
     for (int i = 2; i < sqrt(n); i++)
     {
@@ -20,11 +19,10 @@ bool isPrime(int n)
 
 void sort(string result, string unsort)
 {
-    bool used = false;
     if ((unsort.size() > 0))
     {
         bool fillNum[10];
-        for (int i = 1; i < 10; i++)
+        for (int i = 0; i < 10; i++)
             fillNum[i] = false;
         if (result == "")
             fillNum[0] = true;
@@ -39,12 +37,14 @@ void sort(string result, string unsort)
                 unsortTemp.erase(i, 1);
                 sort(resultTemp, unsortTemp);
             }
-            else
-                used = false;
         }
     }
-    //cout << stoi(result) << endl;
-    if ((result.size() > 0) && (isPrime(std::stoi(result))))
+    stringstream strToInt;
+    strToInt.clear();
+    strToInt.str(result);
+    int resultTemp;
+    strToInt >> resultTemp;
+    if ((result.size() > 0) && (isPrime(resultTemp)))
         primeCount++;
 }
 
