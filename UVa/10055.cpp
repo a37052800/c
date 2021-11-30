@@ -6,6 +6,6 @@ int main()
     long long a, b;
     while (cin >> a >> b)
     {
-        cout << abs(a - b) << endl;
+        cout << abs(a - b) << endl
     }
 }
