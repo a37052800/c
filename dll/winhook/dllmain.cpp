@@ -1,19 +1,24 @@
-﻿// dllmain.cpp : 定義 DLL 應用程式的進入點。
+﻿#include <windows.h>
 #include "pch.h"
+#include "winhook.h"
 
-BOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-                     )
+HHOOK hMouseHook;
+
+LRESULT CALLBACK mouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
-    switch (ul_reason_for_call)
-    {
-    case DLL_PROCESS_ATTACH:
-    case DLL_THREAD_ATTACH:
-    case DLL_THREAD_DETACH:
-    case DLL_PROCESS_DETACH:
-        break;
-    }
-    return TRUE;
+	MOUSEHOOKSTRUCT* pMouseStruct = (MOUSEHOOKSTRUCT*)lParam;
+	if (pMouseStruct != NULL)
+	{
+		if ((wParam == WM_RBUTTONUP) && (pMouseStruct->wHitTestCode == HTMINBUTTON))
+		{
+			MessageBox(NULL, L"HOTKEY", L"notice", MB_OK);
+		}
+	}
+	return CallNextHookEx(hMouseHook, nCode, wParam, lParam);
 }
 
+BOOL __declspec(dllexport) RegisterHook(HMODULE hLib)
+{
+	hMouseHook = SetWindowsHookEx(WH_MOUSE, mouseProc, hLib, 0);
+	return TRUE;
+}

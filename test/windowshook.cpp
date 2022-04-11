@@ -1,32 +1,32 @@
 #include <iostream>
 #include <windows.h>
+typedef BOOL (*fp)(HMODULE);
 using namespace std;
 
-HHOOK hMouseHook;
-
-LRESULT CALLBACK mouseProc(int nCode, WPARAM wParam, LPARAM lParam)
-{
-    MOUSEHOOKSTRUCT *pMouseStruct = (MOUSEHOOKSTRUCT *)lParam;
-    if (pMouseStruct != NULL)
-    {
-        if ((wParam == WM_RBUTTONUP) && (pMouseStruct->wHitTestCode == HTMINBUTTON))
-        {
-            cout << "\n\n\n\n\ndown\n\n\n\n";
-        }
-        cout << pMouseStruct->pt.x << "," << pMouseStruct->pt.y << endl;
-    }
-    return CallNextHookEx(hMouseHook, nCode, wParam, lParam);
-}
+HMODULE hDll;
 
 int main()
 {
-    HINSTANCE hInstance = GetModuleHandle(NULL);
+    hDll = LoadLibrary("mousehook.dll");
+    if(hDll == 0)
+    {
+        cout << "failload";
+        return 1;
+    }
+    fp regist = (fp)GetProcAddress(hDll, "RegisterHook");
+    if(regist == NULL)
+    {
+        FreeLibrary(hDll);
+        cout << "failfind";
+        return 1;
+    }
+    regist(hDll);
 
-    hMouseHook = SetWindowsHookEx(WH_MOUSE, mouseProc, hInstance, 0);
-
-    MSG message;
-    GetMessage(&message, NULL, 0, 0);
-
-    UnhookWindowsHookEx(hMouseHook);
+    //MSG message;
+    //GetMessage(&message, NULL, 0, 0);
+    /*while (GetMessage(&message, NULL, 0, 0))
+        ;*/
+    Sleep(12000);
+    FreeLibrary(hDll);
     return 0;
 }
