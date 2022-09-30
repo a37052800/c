@@ -12,14 +12,6 @@ void genMag(int *magic, int n)
         if (*(magic + i) != -1)
             mag[*(magic + i)] = i + 1;
     }
-    /*for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            cout << mag[i * n + j] << "\t";
-        }
-        cout << endl;
-    }*/
     int sum = n * (n * n + 1) / 2;
     int fl_sum = 0;
     for (int i = 0; i < n; i++)
