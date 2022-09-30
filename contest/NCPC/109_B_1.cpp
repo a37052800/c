@@ -129,6 +129,12 @@ void genMag(int *magic, int n)
                     }
                     cout << endl;
                 }
+                for (int i = 0; i < n; i++)
+                {
+                    cout << "-"
+                         << "\t";
+                }
+                cout << endl;
             }
         }
     }
@@ -137,14 +143,18 @@ int main()
 {
     int n;
     cin >> n;
-    int magic[n * n];
-    for (int i = 0; i < n * n; i++)
-        magic[i] = -1;
-    for (int i = 0; i < n; i++)
+    while (n != 0)
     {
-        int t;
-        cin >> t;
-        magic[t - 1] = i;
+        int magic[n * n];
+        for (int i = 0; i < n * n; i++)
+            magic[i] = -1;
+        for (int i = 0; i < n; i++)
+        {
+            int t;
+            cin >> t;
+            magic[t - 1] = i;
+        }
+        genMag(&magic[0], n);
+        cin >> n;
     }
-    genMag(&magic[0], n);
 }
