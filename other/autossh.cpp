@@ -1,17 +1,17 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include <windows.h>
+#include <Windows.h>
 int main()
 {
     while (true)
     {
-        WinExec("taskkill -im ssh.exe -f", SW_HIDE);
+        WinExec("taskkill -im putty.exe -f", SW_HIDE);
         Sleep(1000);
-        WinExec("ssh -R 4489:localhost:4489 tim@111.253.112.15 -p 1722", SW_HIDE);
+        WinExec("putty.exe -load sshrdp", SW_HIDE);
         while (true)
         {
-            WinExec("PowerShell Test-NetConnection -ComputerName 111.253.112.15 -Port 4489 >result.txt", SW_HIDE);
+            WinExec("PowerShell Test-NetConnection -ComputerName rdp.timsnet.uk -Port 4489 >result.txt", SW_HIDE);
             Sleep(15000);
             std::ifstream fin;
             fin.open("result.txt");
