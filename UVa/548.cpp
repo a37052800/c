@@ -4,63 +4,58 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-struct node
+typedef struct node
 {
     int data;
     node *right;
     node *left;
+} node;
 
-    node(){};
-    node(int data)
-    {
-        this->data = data;
-        right = NULL;
-        left = NULL;
-    }
-};
-
-node *praseNode(vector<int> r, vector<int> l, vector<int> post)
+vector<int> readlist()
 {
-    if (post.empty())
+    string s;
+    getline(cin, s);
+    stringstream ss;
+    ss.str(s);
+    int t;
+    vector<int> vec;
+    while (ss >> t)
+        vec.push_back(t);
+    return vec;
+}
+
+vector<int> inorder;
+vector<int> postorder;
+
+node *praseNode(int l, int r, int n)
+{
+    cout << l << ' ' << r << ' ' << n << '\n';
+    if (l > r)
         return NULL;
-    node currentNode = node(post.back());
-    currentNode.right;
-    currentNode.left;
+    int p = 0;
+    while (inorder[p] == postorder[n])
+        p++;
+    node *root = new node;
+    root->data = postorder[n];
+    root->left = praseNode(l, p - 1, n - p - 1);
+    root->right = praseNode(p + 1, r, n - 1);
+    return root;
 }
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    string inorder, postorder;
-    getline(cin, inorder);
-    getline(cin, postorder);
+    // ios_base::sync_with_stdio(false);
+    // cin.tie(0);
     while (!cin.eof())
     {
-        reverse(postorder.begin(), postorder.end());
-        vector<int> in, post;
-        stringstream ss;
-        ss.str(inorder);
-        while (!ss.eof())
-        {
-            int t;
-            ss >> t;
-            in.push_back(t);
-        }
-        ss.clear();
-        ss.str(postorder);
-        while (!ss.eof())
-        {
-            int t;
-            ss >> t;
-            post.push_back(t);
-        }
-        vector<int>::iterator it = find(in.begin(), in.end(), post.back());
-        vector<int> r, l;
-        r.assign(in.begin(), --it);
-        l.assign(++it, in.end());
-        node *root = praseNode(r, l, post);
-        getline(cin, inorder);
-        getline(cin, postorder);
+        inorder = readlist();
+        postorder = readlist();
+
+        node *root = praseNode(0, inorder.size()-1, postorder.size()-1);
+        if (!root)
+            return 1;
+
+        cout << root->data << "\n";
+        return 0;
     }
 }

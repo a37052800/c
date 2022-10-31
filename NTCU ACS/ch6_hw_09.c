@@ -1,5 +1,5 @@
 #include <stdio.h>
-double fun(int n)
+double func(int n)
 {
     long int mux = 1;
     for (int i = 1; i <= n; i++)
@@ -12,6 +12,6 @@ int main()
     scanf("%d", &n);
     double e = 0;
     for (int i = 1; i <= n; i++)
-        e += fun(i);
+        e += func(i);
     printf("%.4f", e + 1);
 }
