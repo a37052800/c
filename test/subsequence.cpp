@@ -14,6 +14,7 @@ Sample Output
 0.00001
 */
 #include <iostream>
+#include <ctime>
 using namespace std;
 int main()
 {
@@ -28,4 +29,5 @@ int main()
         cout << fixed << sum << endl;
         cin >> n >> m;
     }
+    cout << (double)clock() / CLOCKS_PER_SEC;
 }
