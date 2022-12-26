@@ -9,11 +9,12 @@ int main()
     {
         if (note_day[count] == 0)
             break;
-        scanf("%[^\n]", notes[count]);
-        fflush(stdin);
+        fgets(notes[count],512,stdin);
+        //scanf("%[^\r\n]", notes[count]); oop用這個會讀不到？？
+        //fflush(stdin);  //把留下來的'\n'清空
         count++;
     }
-    for (int i = 0; i < count - 1; i++)
+    for (int i = 0; i < count - 1; i++)  //排序
     {
         for (int j = i + 1; j < count; j++)
         {
@@ -21,26 +22,14 @@ int main()
             {
                 int temp = note_day[i];
                 char ctemp[512];
-                strcpy(ctemp,notes[i]);
+                strcpy(ctemp, notes[i]);  //字串複製strcpy(目標字串位置,來源字串位置)
                 note_day[i] = note_day[j];
-                strcpy(notes[i],notes[j]);
+                strcpy(notes[i], notes[j]);
                 note_day[j] = temp;
-                strcpy(notes[j],ctemp);
+                strcpy(notes[j], ctemp);
             }
         }
     }
     for (int i = 0; i < count; i++)
-    {
-        printf("%d%s\n",note_day[i],notes[i]);
-    }
+        printf("%2d%s", note_day[i], notes[i]);
 }
-/*
-24 Susan's birthday
-6 6:00 - Dinner with Marge and Russ
-26 Movie - "Chinatown"
-7 10:30 - Dental appointment
-13 Movie - "Dazed and Confused"
-5 Saturday class
-12 Saturday class
-0
-*/
