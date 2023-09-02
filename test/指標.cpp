@@ -1,5 +1,10 @@
 #include <iostream>
 using namespace std;
+int* point(int* i)
+{
+    int *test = i;
+    return test;
+}
 int main()
 {
     int i = 666;
@@ -19,5 +24,6 @@ int main()
     {
         cout << ar[i]<< endl;
     }
+    cout<<&i<<'\n'<<point(&i);
     return 0;
 }
