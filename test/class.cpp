@@ -13,6 +13,11 @@ private:
     }
 
 public:
+    car(){};
+    ~car()
+    {
+        cout << "class end\n";
+    };
     int getspeed()
     {
         speedlimit();

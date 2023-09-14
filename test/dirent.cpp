@@ -13,6 +13,7 @@ int main(int argc, char const *argv[])
         if (!entry)
             break;
         cout << entry->d_name << '\n';
+        cout << entry->d_type << '\n';
     }
     closedir(dirp);
     return 0;
