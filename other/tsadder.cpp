@@ -16,7 +16,6 @@ int main(int argc, char const *argv[])
             ss << i << ".ts + ";
         ss << end << ".ts " << output << ".ts";
         getline(ss, comd);
-        // cout << comd << '\n';
         err = system(comd.c_str());
         return err;
     }
@@ -34,7 +33,6 @@ int main(int argc, char const *argv[])
                 ss << i << ".ts + ";
             ss << limit - 1 << ".ts " << output << "_" << loop << ".ts";
             getline(ss, comd);
-            // cout << comd << '\n';
             err = system(comd.c_str());
             if (err != 0)
                 return err;
@@ -47,17 +45,15 @@ int main(int argc, char const *argv[])
             ss << output << "_" << i << ".ts + ";
         ss << output << "_" << loop << ".ts " << output << ".ts";
         getline(ss, comd);
-        // cout << comd << '\n';
         err = system(comd.c_str());
         if (err != 0)
             return err;
         ss.clear();
         ss.str("");
-        ss << "rm ";
+        ss << "del ";
         for (int i = 0; i <= loop; i++)
             ss << output << "_" << i << ".ts ";
         getline(ss, comd);
-        // cout << comd << '\n';
         err = system(comd.c_str());
         if (err != 0)
             return err;

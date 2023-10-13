@@ -51,6 +51,7 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "stdbool.h": "c",
-        "*.tcc": "cpp"
+        "*.tcc": "cpp",
+        "iomanip": "cpp"
     }
 }
