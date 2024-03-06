@@ -22,5 +22,5 @@ int main() {
    cout << "Enter tolls per day: ";
    cin>>b;
    result = (x / z * y)/100 + a + b; // multiply the three integers; store result
-   cout << "/nYour daily driving cost is: " << result << endl; // print result; end line
+   cout << "\nYour daily driving cost is: " << result << endl; // print result; end line
 } // end function main 
