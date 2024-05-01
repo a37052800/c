@@ -15,8 +15,10 @@ public:
     };
     ~Array(){};
     Array &operator+(const Array &);
+    Array &operator+(const int);
     Array &operator=(const Array &);
     Array &operator=(const int);
+    Array &operator+=(const int);
     int &operator[](const int);
     friend std::ostream &operator<<(std::ostream &, const Array &);
 
@@ -32,17 +34,31 @@ private:
 };
 Array &Array::operator+(const Array &other)
 {
+    memcpy(this->arr + this->pos, other.arr, sizeof(int) * other.pos);
+    this->pos += other.pos;
+    return *this;
+}
+Array &Array::operator+(const int num)
+{
+    this->arr[this->pos++] = num;
     return *this;
 }
 Array &Array::operator=(const Array &other)
 {
     memcpy(this->arr, other.arr, sizeof(int) * SIZE);
+    this->pos = other.pos;
     return *this;
 };
 Array &Array::operator=(const int num)
 {
     memset(this->arr, 0, sizeof(int) * SIZE);
-    this->arr[0] = num;
+    this->pos = 0;
+    this->arr[this->pos++] = num;
+    return *this;
+}
+Array &Array::operator+=(const int num)
+{
+    *this = *this + num;
     return *this;
 }
 int &Array::operator[](const int index)
@@ -56,7 +72,7 @@ std::ostream &operator<<(std::ostream &os, Array &arr)
     {
         os << arr[i] << ',';
     }
-    os << arr[arr.size()] << '\n';
+    os << arr[arr.size() - 1] << '\n';
     return os;
 }
 
