@@ -53,5 +53,8 @@
         "stdbool.h": "c",
         "*.tcc": "cpp",
         "iomanip": "cpp"
-    }
+    },
+    "cSpell.ignoreWords": [
+        "fout"
+    ]
 }

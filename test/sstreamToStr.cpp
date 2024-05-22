@@ -10,9 +10,19 @@ int main()
     ss.clear();
     ss.str(s);
     s.clear();
-    for (auto t : ss)
+    while (ss >> a)
     {
-        cout<<t;
+        cout << a << " ";
     }
     cout << s;
+    ss.clear();
+    ss.str("123 456");
+    string test;
+    ss >> test;
+    cout << test << " ";
+    ss >> test;
+    cout << test << " ";
+    if(ss >> test)
+    cout << test << " ";
+
 }
