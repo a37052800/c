@@ -22,14 +22,17 @@ int main()
    char response;
    cout << "Should the file be initialized? (Y or N): ";
    cin >> response;
-   fstream inOutTool("inventory", ios::in | ios::out | ios::binary);
+   fstream inOutTool("inventory.dat", ios::in | ios::out | ios::binary);
    if (!inOutTool)
    {
       cerr << "File could not be opened." << endl;
       exit(1);
    }
    if (response == 'Y')
+   {
       initializeFile(inOutTool);
+      inputData(inOutTool);
+   }
    while ((choice = instructions()) != 5)
    {
       switch (choice)
@@ -60,6 +63,12 @@ int main()
 void initializeFile(fstream &fRef)
 {
    Tool blankItem; // empty Tool object
+   blankItem.setPartNumber(-1); // set partNumber to -1
+   for(int i = 0; i < 100; i++)
+   {
+      fRef.seekp(i * sizeof(Tool));
+      fRef.write(reinterpret_cast<char *>(&blankItem), sizeof(Tool));
+   }
 
 } // end function initializeFile
 
@@ -73,6 +82,27 @@ void inputData(fstream &fRef)
    string name;
    double price;
    int stock;
+
+   for (int i = 0; i < 100; i++)
+   {
+      cout << "Enter the part number (0 - 99, -1 to end input): ";
+      cin >> number;
+      if (number == -1)
+         return;
+      cout << "Enter the tool name: ";
+      cin.ignore();
+      getline(cin, name);
+      cout << "Enter the quantity and price: ";
+      cin >> stock >> price;
+
+      temp.setPartNumber(number);
+      temp.setToolName(name);
+      temp.setInStock(stock);
+      temp.setUnitPrice(price);
+
+      fRef.seekp(number * sizeof(Tool));
+      fRef.write(reinterpret_cast<char *>(&temp), sizeof(Tool));
+   }
 
 } // end inputData
 
@@ -102,7 +132,7 @@ void listTools(fstream &fRef)
    Tool temp;
    cout << left << setw(10) << "Record#" << setw(30) << "Tool Name"
         << setw(13) << "In Stock" << "Unit Price" << endl;
-   for(int i = 0; i < 100; i++)
+   for (int i = 0; i < 100; i++)
    {
       fRef.seekg(i * sizeof(Tool));
       fRef.read(reinterpret_cast<char *>(&temp), sizeof(Tool));
@@ -111,7 +141,7 @@ void listTools(fstream &fRef)
               << setw(30) << temp.getToolName()
               << setw(13) << temp.getInStock()
               << temp.getUnitPrice() << endl;
-   } // end for (int i = 0; i < 100; i++
+   }
 } // end function listTools
 
 // function to update a tool's information
@@ -134,12 +164,12 @@ void insertRecord(fstream &fRef)
    int stock;
    double price;
 
-   cout<<"Enter the part number (0 - 99, -1 to end input): ";
+   cout << "Enter the part number (0 - 99, -1 to end input): ";
    cin >> part;
-   cout<<"Enter the tool name: ";
+   cout << "Enter the tool name: ";
    cin.ignore();
    getline(cin, name);
-   cout<<"Enter the quantity and price: ";
+   cout << "Enter the quantity and price: ";
    cin >> stock >> price;
 
    temp.setPartNumber(part);
