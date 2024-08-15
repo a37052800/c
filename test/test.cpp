@@ -1,17 +1,7 @@
 #include <iostream>
-#include <sstream>
 using namespace std;
-int main(int argc, char const *argv[])
+int main()
 {
-    for (int i = 0; i < argc; i++)
-    {
-        cout << argv[i] << "\n";
-    }
-    stringstream ss;
-    ss.str("my name = tim");
-    string a;
-    ss>>a;
-    cout<<a<<'\n';
-    cout<<ss.;
+    cout<<"Hello World"<<endl;
     return 0;
 }
